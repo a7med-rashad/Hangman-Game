@@ -50,7 +50,7 @@ hr {
   height: 280px;
   position: relative;
   border-bottom: 4px solid #222;
-  margin: auto;
+  margin-left: 70px;
 }
 .hangman-draw .stand:before {
   content: '';
@@ -162,10 +162,41 @@ hr {
     width: 35px;
     height: 35px;
     font-size: 15px;
-    line-height: 35px;
+    line-height: 40px;
     margin-bottom: 10px;
+    border-radius: 3px;
   }
 }
-
-
+.letters .letter-box.clicked {
+  background-color: #777;
+  pointer-events: none;
+  opacity: .2;
+  
+}
+.letters-guess {
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  min-height: 104px;
+}
+.letters-guess span {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  margin-right: 10px;
+  line-height: 60px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #222;
+}
+.letters-guess span.has-space {
+  border-bottom: 3px solid #222;
+  background-color: #f8f8f8;
+  height: 63px;
+  width: 15px;
+}
 

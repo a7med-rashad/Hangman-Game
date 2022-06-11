@@ -12,10 +12,10 @@ lettersArray.forEach(letter => {
 })
 
 const words = {
-    programming: ["php", "javascript", "go", "scala"],
-    movies: ["prestige", "inception", "parasite", "up"],
-    people: ["albert einstein", "hitchcock"],
-    countries: ["syria", "palestine", "yemen", "egypt"],
+    programming: ["php", "javas cript", "go", "scala"],
+    movies: ["prestige", "incep tion", "parasite", "up"],
+    people: ["albert einstein", "hitch cock"],
+    countries: ["syria", "pales tine", "yemen", "egypt"],
 }
 
 
@@ -28,9 +28,9 @@ document.querySelector(".game-info .category span").innerHTML = randomCategName;
 
 let lettersGuessContanier =  document.querySelector(".letters-guess")
 
-wordLetters = Array.from(randomWord)
+wordLetterAndSpace = Array.from(randomWord)
 
-wordLetters.forEach(letter => {
+wordLetterAndSpace.forEach(letter => {
     let emptySpan = document.createElement("span")
 
     if (letter === ' ') {
@@ -41,3 +41,26 @@ wordLetters.forEach(letter => {
 })
 
 
+
+let chosenWord = Array.from(randomWord)
+
+let guessSpans = document.querySelectorAll(".letters-guess span")
+let theStatu = false;
+document.addEventListener("click", (e) => {
+  if (e.target.className === "letter-box") {
+    e.target.classList.add("clicked")
+    clickedLetter = e.target.innerHTML.toLowerCase()
+    
+    chosenWord.forEach((wordLetter, wordindex) => {
+      if (clickedLetter == wordLetter){
+        theStatu = true;
+        guessSpans.forEach((span, spanIndex) => {
+          if (wordindex == spanIndex) {
+            span.innerHTML = clickedLetter
+          }
+        })
+      }
+    })
+    console.log(theStatu)
+  }
+})
