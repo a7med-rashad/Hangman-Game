@@ -50,7 +50,13 @@ hr {
   height: 280px;
   position: relative;
   border-bottom: 4px solid #222;
-  margin-left: 70px;
+  margin: auto;
+  left: -70px;
+  display: none;
+}
+
+.hangman-draw .stand{
+  display: none;
 }
 .hangman-draw .stand:before {
   content: '';
@@ -60,6 +66,9 @@ hr {
   background-color: #222;
   left: 50%;
   margin-left: -2px;
+}
+.hangman-draw .hang {
+  display: none;
 }
 .hangman-draw .hang:before {
   content: '';
@@ -87,6 +96,7 @@ hr {
   left: 98px;
   top: 45px;
   border-radius: 50%;
+  display: none;
 }
 .hangman-draw .man .head {
   position: absolute;
@@ -96,6 +106,7 @@ hr {
   left: 108px;
   top: 55px;
   border-radius: 50%;
+  display: none;
 }
 .hangman-draw .man .body {
   position: absolute;
@@ -104,6 +115,10 @@ hr {
   background-color: #222;
   left: 130px;
   top: 102px;
+  display: none;
+}
+.hangman-draw .man .hands {
+  display: none;
 }
 .hangman-draw .man .hands:before {
   left: 85px;
@@ -122,6 +137,9 @@ hr {
   background-color:#222;
   top: 130px;
 }
+.hangman-draw .man .legs {
+  display: none;
+}
 .hangman-draw .man .legs:before {
   left: 85px;
   transform: rotate(-30deg);
@@ -139,12 +157,38 @@ hr {
   background-color:#222;
   top: 220px;
 }
+.hangman-draw.wrong-1 .draw{
+  display: block;
+}
+.hangman-draw.wrong-2 .stand{
+  display: block;
+}
+.hangman-draw.wrong-3 .hang{
+  display: block;
+}
+.hangman-draw.wrong-4 .rope{
+  display: block;
+}
+.hangman-draw.wrong-5 .head{
+  display: block;
+}
+.hangman-draw.wrong-6 .body{
+  display: block;
+}
+.hangman-draw.wrong-7 .hands{
+  display: block;
+}
+.hangman-draw.wrong-8 .legs{
+  display: block;
+}
 .letters {
   flex: 1;
   text-align: center;
   padding: 15px;
 }
-
+.letters.finished {
+  pointer-events: none;
+}
 .letters .letter-box {
   width: 55px;
   height: 55px;
@@ -156,6 +200,7 @@ hr {
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 12px;
+  cursor: pointer;
 }
 @media (max-width: 550px) {
   .letters .letter-box {
@@ -199,4 +244,32 @@ hr {
   height: 63px;
   width: 15px;
 }
-
+.popup {
+  position: fixed;
+  background-color: #009688;
+  padding: 100px 20px;
+  width: 80%;
+  top: 10%;
+  left: 10%;
+  text-align: center;
+  font-size: 40px;
+  border: 1px solid #ccc;
+  color: #fff;
+  border-radius: 5px;
+}
+.popup .button {
+  position: absolute;
+  background-color: white;
+  padding: 15px 20px;
+  width: 100px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translatex(-50%);
+  text-align: center;
+  font-size: 15px;
+  color: #000;
+  border-radius: 5px;
+  margin-top: 70px;
+  font-weight: bold;
+  }

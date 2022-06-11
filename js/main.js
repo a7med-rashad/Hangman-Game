@@ -1,5 +1,5 @@
 
-const lettersArray = Array.from("abcdefghijklmnopqrstuvwxyz")
+const lettersArray = Array.from("ابتثجحخدذرزسشصضطظعغفقكلمنهوي")
 
 let lettersContainer = document.querySelector(".letters")
 
@@ -12,10 +12,10 @@ lettersArray.forEach(letter => {
 })
 
 const words = {
-    programming: ["php", "javas cript", "go", "scala"],
-    movies: ["prestige", "incep tion", "parasite", "up"],
-    people: ["albert einstein", "hitch cock"],
-    countries: ["syria", "pales tine", "yemen", "egypt"],
+    أغاني: ["الاطلال", "البخت", "اتنسيت", "تعالا ادلعك",/*, "", "", "", "", "", ""*/],
+    أفلام: ["الفيل الازرق", "اشتباك", "لاتراجع ولااستسلام", "هيبتا"/*, "", "", "", "", "", ""*/],
+    اشخاص_مشهوره: ["عمرو دياب", "نجيب محفوظ", "عادل امام", "ابوتريكه", "سعد الصغير", "رونالدو", "تامر حسني", "حمدي الوزير"],
+    بلاد: ["سوريا", "فلسطين", "اليمين", "مصر"/*, "", "", "", "", "", ""*/],
 }
 
 
@@ -23,6 +23,7 @@ let allkey = Object.keys(words);
 randomCategName = allkey[Math.floor(Math.random() * allkey.length)]
 let randomPropValue = words[randomCategName];
 let randomWord = randomPropValue[Math.floor(Math.random() * randomPropValue.length)]
+console.log(randomWord)
 
 document.querySelector(".game-info .category span").innerHTML = randomCategName;
 
@@ -45,8 +46,12 @@ wordLetterAndSpace.forEach(letter => {
 let chosenWord = Array.from(randomWord)
 
 let guessSpans = document.querySelectorAll(".letters-guess span")
-let theStatu = false;
+
+let wrongTry = 0;
+let hangman = document.querySelector(".hangman-draw")
+
 document.addEventListener("click", (e) => {
+  let theStatu = false;
   if (e.target.className === "letter-box") {
     e.target.classList.add("clicked")
     clickedLetter = e.target.innerHTML.toLowerCase()
@@ -61,6 +66,42 @@ document.addEventListener("click", (e) => {
         })
       }
     })
-    console.log(theStatu)
+    if (theStatu !== true) {
+      wrongTry++;
+      hangman.classList.add(`wrong-${wrongTry}`)
+      
+      if (wrongTry === 8) {
+        endGame()
+        relod()
+        
+        lettersContainer.classList.add("finished")
+
+        document.getElementById("fail").pause()
+      }
+
+      document.getElementById("fail").play()
+
+    } else {
+      document.getElementById("success").play()
+      
+    }
   }
 })
+
+
+function endGame() {
+  let popup = document.createElement("div")
+  popup.appendChild(document.createTextNode(`Game Over, الكلمه الصحيحه هي ${randomWord}`))
+  popup.className = "popup"
+  document.body.appendChild(popup)
+  let popupButton = document.createElement("div")
+  popupButton.appendChild(document.createTextNode("Again"))
+  popupButton.className = "button"
+  popup.appendChild(popupButton)
+  document.body.appendChild(popup)
+  document.getElementById("game-over").play()
+  document.getElementById("fail").stop()
+}
+
+function relod() {
+}
